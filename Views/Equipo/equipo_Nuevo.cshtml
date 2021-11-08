@@ -1,0 +1,195 @@
+﻿@model Ronvelt.Models.Entities.Equipo
+
+@{
+    ViewData["Title"] = "equipo_Nuevo";
+}
+
+
+
+<link href="~/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+
+<div class="block-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+                Registrar Equipo
+            </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Ronvel</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Equipos</a></li>
+                <li class="breadcrumb-item active">Registrar Nuevo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form asp-action="equipo_Nuevo">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>Informacion</strong> Basica <small> Ingrese informacion relevante del equipo...</small> </h2>
+
+                    </div>
+                    <div class="body">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-12">
+                                <div class="form-group">
+
+                                    <input asp-for="Tipo" class="form-control" maxlength="20" placeholder="Tipo" />
+                                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input asp-for="Serie" class="form-control" maxlength="50"  placeholder="Serie"/>
+                                    <span asp-validation-for="Serie" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input asp-for="Nombre" class="form-control" maxlength="50" placeholder="Nombre" />
+                                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Marca" class="form-control" maxlength="50" placeholder="Marca" />
+                                    <span asp-validation-for="Marca" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Modelo" class="form-control" maxlength="50" placeholder="Modelo" />
+                                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Color" class="form-control" maxlength="50" placeholder="Color" />
+                                    <span asp-validation-for="Color" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="ModeloMotor" class="form-control" maxlength="50" placeholder="Modelo Motor"/>
+                                    <span asp-validation-for="ModeloMotor" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="SerieMotor" class="form-control" maxlength="50" placeholder="Serie Motor" />
+                                    <span asp-validation-for="SerieMotor" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="FechaCompra"></label>
+                                    <input asp-for="FechaCompra" class="form-control" type="date" />
+                                    <span asp-validation-for="FechaCompra" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label asp-for="AnioFabricacion"></label>
+                                    <input asp-for="AnioFabricacion" maxlength="4" class="form-control" placeholder="Año Fabricacion" />
+                                    <span asp-validation-for="AnioFabricacion" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                          
+                        </div>
+
+
+
+                        <div class="row clearfix">
+
+                            
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="form-group">
+
+                                    <input asp-for="PrecioPorHora" class="form-control" placeholder="Precio/Hora"/>
+                                    <span asp-validation-for="PrecioPorHora" class="text-danger"></span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="form-group">
+
+                                    <input asp-for="TotalHorasTrabajadas" type="number" class="form-control" placeholder="Total Hrs Trabajadas" />
+                                    <span asp-validation-for="TotalHorasTrabajadas" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="form-group">
+
+                                    <input asp-for="HorasDisponibles" type="number" class="form-control" placeholder="Hrs Disponibles"  />
+                                    <span asp-validation-for="HorasDisponibles" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="form-group">
+
+                                    <input asp-for="HorasFaltantes" type="number" class="form-control" placeholder="Hrs Faltantes"/>
+                                    <span asp-validation-for="HorasFaltantes" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="Disponible" /> @Html.DisplayNameFor(model => model.Disponible)
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+
+
+
+                            <br />
+
+
+                            <div class="row clearfix">
+
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-raised btn-round btn-primary">Guardar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+    <div>
+        <a asp-action="equipo_Lista">Cancelar</a>
+    </div>

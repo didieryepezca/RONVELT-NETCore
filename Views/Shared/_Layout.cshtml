@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html class="no-js " lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+    <title>:: RONVEL S.A.C::</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+    <link rel="stylesheet" href="~/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css" />
+    <link rel="stylesheet" href="~/assets/plugins/morrisjs/morris.min.css" />
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/color_skins.css">
+</head>
+<body class="theme-orange">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30"><img class="zmdi-hc-spin" src="~/assets/images/logo.svg" width="48" height="48" alt="Oreo"></div>
+            <p>Un momento...</p>
+        </div>
+    </div>
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- Top Bar -->
+    <nav class="navbar p-l-5 p-r-5">
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                <div class="navbar-header">
+                    <a href="javascript:void(0);" class="bars"></a>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo.svg" width="30" alt="Oreo"><span class="m-l-10">RONVEL S.A.C</span></a>
+                </div>
+            </li>
+           
+            <li class="hidden-sm-down">
+                <div class="input-group">
+                    @*<input type="text" class="form-control" placeholder="Search...">*@
+                    <span class="input-group-addon">
+                        <i class="zmdi zmdi-account"></i>
+                    </span>
+                </div>
+            </li>
+            <li class="float-right">
+                
+                <a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+
+        <div class="tab-content">
+            <div class="tab-pane stretchRight active" id="dashboard">
+                <div class="menu">
+                    <ul class="list">
+                        <li>
+                            <div class="user-info">
+                                <div class="image">
+                                    <img src="~/images/ronvel-logo.jpg" alt="Ronvel S.A.C">
+                                </div>
+                                <div class="detail">                                    
+                                    <small> <strong><partial name="_LoginPartial" /></strong></small>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="header">MENU</li>
+
+
+                        <li><a asp-controller="Home" asp-action="Index"><i class="zmdi zmdi-account"></i><span>Clientes</span></a></li>
+
+                        <li><a asp-controller="Alquiler" asp-action="alquiler_Lista"><i class="zmdi zmdi-archive"></i><span>Alquileres</span></a></li>
+
+                        <li><a asp-controller="Equipo" asp-action="equipo_Lista"><i class="zmdi zmdi-bus"></i><span>Equipos</span> </a></li>
+
+                        <li><a asp-controller="Obra" asp-action="obra_Lista"><i class="zmdi zmdi-traffic"></i><span>Obras</span> </a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+    <!-- Right Sidebar -->
+    <!-- Main Content -->
+    <section class="content home">
+
+    
+
+        @RenderBody()
+
+
+    </section>
+    <!-- Jquery Core Js -->
+    <script src="~/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
+    <script src="~/assets/bundles/vendorscripts.bundle.js"></script> <!-- slimscroll, waves Scripts Plugin Js -->
+
+    <script src="~/assets/bundles/morrisscripts.bundle.js"></script><!-- Morris Plugin Js -->
+    <script src="~/assets/bundles/jvectormap.bundle.js"></script> <!-- JVectorMap Plugin Js -->
+    <script src="~/assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script><!-- USA Map Js -->
+    <script src="~/assets/bundles/knob.bundle.js"></script> <!-- Jquery Knob, Count To, Sparkline Js -->
+
+    <script src="~/assets/bundles/mainscripts.bundle.js"></script>
+    <script src="~/assets/js/pages/index.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

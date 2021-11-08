@@ -1,0 +1,137 @@
+﻿@model Ronvelt.Models.Entities.Alquiler
+
+@{
+    ViewData["Title"] = "alquiler_Nuevo";
+}
+
+<link href="~/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+
+<div class="block-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+                Registrar Alquiler
+            </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Ronvel</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Alquileres</a></li>
+                <li class="breadcrumb-item active">Registrar Nuevo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<form asp-action="alquiler_Nuevo">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>Informacion</strong> Basica <small> Ingrese informacion relevante de su alquiler...</small> </h2>
+
+                    </div>
+                    <div class="body">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-12">
+                                <div class="form-group">
+
+                                    <label class="col-md-12 control-label">Obra</label>
+                                    <select asp-for="CodigoObra" asp-items="@(new SelectList(ViewBag.obrasList,"Codigo", "Nombre"))" title="-- Seleccione --" class="form-control show-tick" tabindex="-98" required></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">Cliente</label>
+                                    <select asp-for="CodigoCliente" asp-items="@(new SelectList(ViewBag.clientesList,"Codigo", "NombreRazonSocial"))" title="-- Seleccione --" class="form-control show-tick" tabindex="-98" required></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+
+                                    <label class="col-md-12 control-label">Tipo de Pago</label>
+                                    <select asp-for="TipoPago"  title="-- Seleccione --" class="form-control show-tick" tabindex="-98" required>
+                                        <option value="EFECTIVO">EFECTIVO</option>
+                                        <option value="TARJETA">TARJETA</option>
+                                    </select>
+                                    <span asp-validation-for="TipoPago" class="text-danger" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                   
+                                    @{
+                                        string fec_entrega = ViewBag.fechaEntrega;
+
+                                        if (fec_entrega.Equals("0001-01-01"))
+                                        {
+                                            fec_entrega = DateTime.Today.ToString("yyyy-MM-dd");
+                                        }
+                                    }
+
+                                    <label class="col-md-12 control-label">FECHA DE ENTREGA</label>
+                                    <input asp-for="FechaEntrega" type="date" class="form-control" name="fec_entrega" value="@fec_entrega">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">                                   
+                                    @{
+                                        string fec_devolucion = ViewBag.fechaDevolucion;
+
+                                        if (fec_devolucion.Equals("0001-01-01"))
+                                        {
+                                            fec_devolucion = DateTime.Today.ToString("yyyy-MM-dd");
+                                        }
+                                    }
+
+                                    <label class="col-md-12 control-label">FECHA DE DEVOLUCION</label>
+                                    <input asp-for="FechaDevolucion" type="date" class="form-control" name="fec_devolucion" value="@fec_devolucion">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">Tipo de Comprobante</label>
+                                    <select asp-for="TipoComprobante" title="-- Seleccione --" class="form-control show-tick" tabindex="-98" required>
+                                        <option value="BOLETA">BOLETA</option>
+                                        <option value="FACTURA">FACTURA</option>
+                                    </select>
+                                    <span asp-validation-for="TipoComprobante" class="text-danger" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Monto" class="form-control" placeholder="Monto" />
+                                    <span asp-validation-for="Monto" class="text-danger"></span>
+                                </div>
+                            </div>                          
+                        </div>
+                        <br />
+                        
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-raised btn-round btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+
+<div>
+    <a asp-action="alquiler_Lista">Cancelar</a>
+</div>

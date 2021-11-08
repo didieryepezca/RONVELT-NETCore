@@ -1,0 +1,140 @@
+﻿@model Ronvelt.Models.Entities.Cliente
+
+@{
+    ViewData["Title"] = "cliente_Nuevo";
+}
+
+
+<link href="~/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+
+<div class="block-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+                Registrar Cliente
+            </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Ronvel</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Clientes</a></li>
+                <li class="breadcrumb-item active">Registrar Nuevo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form asp-action="cliente_Nuevo">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>Informacion</strong> Basica <small> Ingrese informacion relevante de su cliente...</small> </h2>
+
+                    </div>
+                    <div class="body">
+
+                        <div class="row clearfix">
+                            <div class="col-lg-3 col-md-12">
+                                <div class="form-group">                                
+
+                                    <input asp-for="rUCDNI" type="text" class="form-control" placeholder="DNI/RUC" />
+                                    <span asp-validation-for="rUCDNI" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    
+                                    <input asp-for="NombreRazonSocial" class="form-control" placeholder="Nombre o Razon Social" />
+                                    <span asp-validation-for="NombreRazonSocial" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">                     
+
+                                    
+                                    <input asp-for="Direccion" class="form-control" placeholder="Direccion" />
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Telefono" class="form-control" placeholder="Telefono" />
+                                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Fax" class="form-control" placeholder="FAX" />
+                                    <span asp-validation-for="Fax" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Contacto" class="form-control" placeholder="Contacto" />
+                                    <span asp-validation-for="Contacto" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="CelularContacto" class="form-control" placeholder="Celular Contacto" />
+                                    <span asp-validation-for="CelularContacto" class="text-danger"></span>
+                                </div>
+                                </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                </div>
+                            </div>
+                        <br />
+                        <div class="row clearfix">
+                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input asp-for="Comentario" class="form-control" placeholder="Comentario" />
+                                    <span asp-validation-for="Comentario" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Recomendable" /> @Html.DisplayNameFor(model => model.Recomendable)
+                                </label>
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="row clearfix">
+
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-raised btn-round btn-primary">Guardar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+   
+
+    <div>
+        <a asp-controller="Home" asp-action="Index">Regresar</a>
+    </div>
+

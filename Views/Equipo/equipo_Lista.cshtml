@@ -1,0 +1,328 @@
+﻿@model IEnumerable<Ronvelt.Models.Entities.Equipo>
+
+<style>
+    table tbody tr td {
+        font-size: 11.5px;
+    }
+</style>
+
+<style>
+    table thead {
+        font-size: 11.5px;
+    }
+</style>
+
+<link href="~/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            "paging": false,
+
+            "info": false,
+            buttons: [
+                'copy',
+                'excelHtml5',
+                'csvHtml5'
+            ]
+        });
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+
+</script>
+
+
+<div class="block-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>
+                Todos los Equipos
+
+            </h2>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-12">
+
+            <ul class="breadcrumb float-md-right">
+                <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Ronvel</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Equipos</a></li>
+                <li class="breadcrumb-item active">Todos</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<form asp-action="equipo_Lista" method="get">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+
+                    <h2><strong>Buscar</strong> Equipo <small></small></h2>
+                    <div class="row clearfix">
+                        <div class="col-lg-0 col-md-12">
+                            <div class="form-group">
+                                <br />
+
+                                <strong><a asp-controller="Equipo" asp-action="equipo_Nuevo">Registrar nuevo</a></strong>
+                                <br />
+                            </div>
+                        </div>
+
+                        <br />
+
+
+                        <div class="col-lg-2 col-md-12">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="serie" placeholder="Ingrese Nro. Serie">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nombre" placeholder="Ingrese Nombre">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="marca" placeholder="Ingrese Marca">
+                            </div>
+                        </div>
+
+                        @*<div class="col-lg-3 col-md-12">
+                            <div class="form-group">
+                                <select title="-- Disponibilidad --" name="disponible" class="form-control show-tick" tabindex="-98">
+                                    <option value="1">Disponible</option>
+                                    <option value="0">Trabajando</option>
+                                </select>
+                            </div>
+                        </div>*@
+
+
+
+                        <div class="col-lg-2 col-md-12">
+                            <div class="form-group">
+
+                                @{
+                                    var search = 'B';
+
+                                }
+
+
+                                <button type="submit" value="@search" name="accion" class="btn btn-raised btn-round btn-info">Buscar</button>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card student-list">
+                    <div class="header">
+                        <h2><strong>Equipos</strong> Lista</h2>
+                        <ul class="header-dropdown">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    Exportar <i class="zmdi zmdi-more"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                    <li> <a onclick="tableToExcel('example', 'Lista de Equipos')" style="cursor:pointer">Exportar a Excel</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        @*<ul class="header-dropdown">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-right slideUp">
+                                        <li><a href="javascript:void(0);">Exportar a Excel</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>*@
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive" style="height: 380px">
+                            <table class="table table-hover m-b-0" id="example">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Codigo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Tipo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Serie)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Marca)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Modelo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Color)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ModeloMotor)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SerieMotor)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FechaCompra)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.AnioFabricacion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.PrecioPorHora)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Disponible)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TotalHorasTrabajadas)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.HorasDisponibles)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.HorasFaltantes)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Codigo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Tipo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Serie)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Marca)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Modelo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Color)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ModeloMotor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SerieMotor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FechaCompra)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AnioFabricacion)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PrecioPorHora)
+                                            </td>
+                                            @if (item.Disponible == true)
+                                            {
+                                                <td>
+                                                    <span class="badge badge-success">DISPONIBLE</span>
+
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    <span class="badge badge-danger">TRABAJANDO</span>
+                                                </td>
+                                            }
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TotalHorasTrabajadas)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HorasDisponibles)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HorasFaltantes)
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Equipo" asp-action="equipo_Editar" asp-route-codigo="@item.Codigo"><i class="zmdi zmdi-edit m-r-15"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="card">
+                    <div class="body">
+                        <ul class="pagination pagination-primary m-b-0">
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+
+
+
+</form>
